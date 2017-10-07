@@ -5,10 +5,11 @@
   "author": "Evgeny Kochetkov",
   "license": "MIT",
   "repository": {
-    "url": ""
+    "url": "https://github.com/evgenykochetkov/ramda-cheatsheet"
   },
   "scripts": {
     "generate": "node ./index.js",
+    "test": "yarn generate && echo \"Generated a cheatsheet without blowing up.\"",
     "gh-pages": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
