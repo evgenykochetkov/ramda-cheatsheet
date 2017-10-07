@@ -1,0 +1,2994 @@
+<html>
+  <head>
+    <title>Ramda Cheatsheet v0.24.1</title>
+    <style>
+      body {
+        font-family: monospace;
+      }
+
+      .category-title {
+        color: #849;
+      }
+
+      .category-items {
+        padding: 0;
+      }
+      .category-items > li {
+        list-style: none;
+        display: inline-block;
+      }
+
+      .func {
+        color: black;
+        text-decoration: none;
+      }
+      .func:focus, .func:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ramda v0.24.1</h1>
+
+    <section>
+      <h2 class="category-title">Function</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#__"
+            title="A special placeholder value used to specify &quot;gaps&quot; within curried functions,
+allowing partial application of any combination of arguments, regardless of
+their positions.
+
+If &#x60;g&#x60; is a curried ternary function and &#x60;_&#x60; is &#x60;R.__&#x60;, the following are
+equivalent:
+
+  - &#x60;g(1, 2, 3)&#x60;
+  - &#x60;g(_, 2, 3)(1)&#x60;
+  - &#x60;g(_, _, 3)(1)(2)&#x60;
+  - &#x60;g(_, _, 3)(1, 2)&#x60;
+  - &#x60;g(_, 2, _)(1, 3)&#x60;
+  - &#x60;g(_, 2)(1)(3)&#x60;
+  - &#x60;g(_, 2)(1, 3)&#x60;
+  - &#x60;g(_, 2)(_, 3)(1)&#x60;"
+          >
+            __
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#addIndex"
+            title="Creates a new list iteration function from an existing one by adding two new
+parameters to its callback function: the current index, and the entire list.
+
+This would turn, for instance, [&#x60;R.map&#x60;](#map) function into one that
+more closely resembles &#x60;Array.prototype.map&#x60;. Note that this will only work
+for functions in which the iteration callback function is the first
+parameter, and where the list is the last parameter. (This latter might be
+unimportant if the list parameter is not used.)"
+          >
+            addIndex
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#always"
+            title="Returns a function that always returns the given value. Note that for
+non-primitives the value returned is a reference to the original value.
+
+This function is known as &#x60;const&#x60;, &#x60;constant&#x60;, or &#x60;K&#x60; (for K combinator) in
+other languages and libraries."
+          >
+            always
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#ap"
+            title="ap applies a list of functions to a list of values.
+
+Dispatches to the &#x60;ap&#x60; method of the second argument, if present. Also
+treats curried functions as applicatives."
+          >
+            ap
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#apply"
+            title="Applies function &#x60;fn&#x60; to the argument list &#x60;args&#x60;. This is useful for
+creating a fixed-arity function from a variadic function. &#x60;fn&#x60; should be a
+bound function if context is significant."
+          >
+            apply
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#applySpec"
+            title="Given a spec object recursively mapping properties to functions, creates a
+function producing an object of the same structure, by mapping each property
+to the result of calling its associated function with the supplied arguments."
+          >
+            applySpec
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#ascend"
+            title="Makes an ascending comparator function out of a function that returns a value
+that can be compared with &#x60;&lt;&#x60; and &#x60;&gt;&#x60;."
+          >
+            ascend
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#binary"
+            title="Wraps a function of any arity (including nullary) in a function that accepts
+exactly 2 parameters. Any extraneous parameters will not be passed to the
+supplied function."
+          >
+            binary
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#bind"
+            title="Creates a function that is bound to a context.
+Note: &#x60;R.bind&#x60; does not provide the additional argument-binding capabilities of
+[Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)."
+          >
+            bind
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#call"
+            title="Returns the result of calling its first argument with the remaining
+arguments. This is occasionally useful as a converging function for
+[&#x60;R.converge&#x60;](#converge): the first branch can produce a function while the
+remaining branches produce values to be passed to that function as its
+arguments."
+          >
+            call
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#comparator"
+            title="Makes a comparator function out of a function that reports whether the first
+element is less than the second."
+          >
+            comparator
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#compose"
+            title="Performs right-to-left function composition. The rightmost function may have
+any arity; the remaining functions must be unary.
+
+**Note:** The result of compose is not automatically curried."
+          >
+            compose
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#composeK"
+            title="Returns the right-to-left Kleisli composition of the provided functions,
+each of which must return a value of a type supported by [&#x60;chain&#x60;](#chain).
+
+&#x60;R.composeK(h, g, f)&#x60; is equivalent to &#x60;R.compose(R.chain(h), R.chain(g), R.chain(f))&#x60;."
+          >
+            composeK
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#composeP"
+            title="Performs right-to-left composition of one or more Promise-returning
+functions. The rightmost function may have any arity; the remaining
+functions must be unary."
+          >
+            composeP
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#construct"
+            title="Wraps a constructor function inside a curried function that can be called
+with the same arguments and returns the same type."
+          >
+            construct
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#constructN"
+            title="Wraps a constructor function inside a curried function that can be called
+with the same arguments and returns the same type. The arity of the function
+returned is specified to allow using variadic constructor functions."
+          >
+            constructN
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#converge"
+            title="Accepts a converging function and a list of branching functions and returns
+a new function. When invoked, this new function is applied to some
+arguments, each branching function is applied to those same arguments. The
+results of each branching function are passed as arguments to the converging
+function to produce the return value."
+          >
+            converge
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#curry"
+            title="Returns a curried equivalent of the provided function. The curried function
+has two unusual capabilities. First, its arguments needn&#x27;t be provided one
+at a time. If &#x60;f&#x60; is a ternary function and &#x60;g&#x60; is &#x60;R.curry(f)&#x60;, the
+following are equivalent:
+
+  - &#x60;g(1)(2)(3)&#x60;
+  - &#x60;g(1)(2, 3)&#x60;
+  - &#x60;g(1, 2)(3)&#x60;
+  - &#x60;g(1, 2, 3)&#x60;
+
+Secondly, the special placeholder value [&#x60;R.__&#x60;](#__) may be used to specify
+&quot;gaps&quot;, allowing partial application of any combination of arguments,
+regardless of their positions. If &#x60;g&#x60; is as above and &#x60;_&#x60; is [&#x60;R.__&#x60;](#__),
+the following are equivalent:
+
+  - &#x60;g(1, 2, 3)&#x60;
+  - &#x60;g(_, 2, 3)(1)&#x60;
+  - &#x60;g(_, _, 3)(1)(2)&#x60;
+  - &#x60;g(_, _, 3)(1, 2)&#x60;
+  - &#x60;g(_, 2)(1)(3)&#x60;
+  - &#x60;g(_, 2)(1, 3)&#x60;
+  - &#x60;g(_, 2)(_, 3)(1)&#x60;"
+          >
+            curry
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#curryN"
+            title="Returns a curried equivalent of the provided function, with the specified
+arity. The curried function has two unusual capabilities. First, its
+arguments needn&#x27;t be provided one at a time. If &#x60;g&#x60; is &#x60;R.curryN(3, f)&#x60;, the
+following are equivalent:
+
+  - &#x60;g(1)(2)(3)&#x60;
+  - &#x60;g(1)(2, 3)&#x60;
+  - &#x60;g(1, 2)(3)&#x60;
+  - &#x60;g(1, 2, 3)&#x60;
+
+Secondly, the special placeholder value [&#x60;R.__&#x60;](#__) may be used to specify
+&quot;gaps&quot;, allowing partial application of any combination of arguments,
+regardless of their positions. If &#x60;g&#x60; is as above and &#x60;_&#x60; is [&#x60;R.__&#x60;](#__),
+the following are equivalent:
+
+  - &#x60;g(1, 2, 3)&#x60;
+  - &#x60;g(_, 2, 3)(1)&#x60;
+  - &#x60;g(_, _, 3)(1)(2)&#x60;
+  - &#x60;g(_, _, 3)(1, 2)&#x60;
+  - &#x60;g(_, 2)(1)(3)&#x60;
+  - &#x60;g(_, 2)(1, 3)&#x60;
+  - &#x60;g(_, 2)(_, 3)(1)&#x60;"
+          >
+            curryN
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#descend"
+            title="Makes a descending comparator function out of a function that returns a value
+that can be compared with &#x60;&lt;&#x60; and &#x60;&gt;&#x60;."
+          >
+            descend
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#empty"
+            title="Returns the empty value of its argument&#x27;s type. Ramda defines the empty
+value of Array (&#x60;[]&#x60;), Object (&#x60;{}&#x60;), String (&#x60;&#x27;&#x27;&#x60;), and Arguments. Other
+types are supported if they define &#x60;&lt;Type&gt;.empty&#x60; and/or
+&#x60;&lt;Type&gt;.prototype.empty&#x60;.
+
+Dispatches to the &#x60;empty&#x60; method of the first argument, if present."
+          >
+            empty
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#F"
+            title="A function that always returns &#x60;false&#x60;. Any passed in parameters are ignored."
+          >
+            F
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#flip"
+            title="Returns a new function much like the supplied one, except that the first two
+arguments&#x27; order is reversed."
+          >
+            flip
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#identity"
+            title="A function that does nothing but return the parameter supplied to it. Good
+as a default or placeholder function."
+          >
+            identity
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#invoker"
+            title="Turns a named method with a specified arity into a function that can be
+called directly supplied with arguments and a target object.
+
+The returned function is curried and accepts &#x60;arity + 1&#x60; parameters where
+the final parameter is the target object."
+          >
+            invoker
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#juxt"
+            title="juxt applies a list of functions to a list of values."
+          >
+            juxt
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lift"
+            title="&quot;lifts&quot; a function of arity &gt; 1 so that it may &quot;map over&quot; a list, Function or other
+object that satisfies the [FantasyLand Apply spec](https://github.com/fantasyland/fantasy-land#apply)."
+          >
+            lift
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#liftN"
+            title="&quot;lifts&quot; a function to be the specified arity, so that it may &quot;map over&quot; that
+many lists, Functions or other objects that satisfy the [FantasyLand Apply spec](https://github.com/fantasyland/fantasy-land#apply)."
+          >
+            liftN
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#memoize"
+            title="Creates a new function that, when invoked, caches the result of calling &#x60;fn&#x60;
+for a given argument set and returns the result. Subsequent calls to the
+memoized &#x60;fn&#x60; with the same argument set will not result in an additional
+call to &#x60;fn&#x60;; instead, the cached result for that set of arguments will be
+returned."
+          >
+            memoize
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#memoizeWith"
+            title="A customisable version of [&#x60;R.memoize&#x60;](#memoize). &#x60;memoizeWith&#x60; takes an
+additional function that will be applied to a given argument set and used to
+create the cache key under which the results of the function to be memoized
+will be stored. Care must be taken when implementing key generation to avoid
+clashes that may overwrite previous entries erroneously."
+          >
+            memoizeWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#nAry"
+            title="Wraps a function of any arity (including nullary) in a function that accepts
+exactly &#x60;n&#x60; parameters. Any extraneous parameters will not be passed to the
+supplied function."
+          >
+            nAry
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#nthArg"
+            title="Returns a function which returns its nth argument."
+          >
+            nthArg
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#o"
+            title="&#x60;o&#x60; is a curried composition function that returns a unary function.
+Like [&#x60;compose&#x60;](#compose), &#x60;o&#x60; performs right-to-left function composition.
+Unlike [&#x60;compose&#x60;](#compose), the rightmost function passed to &#x60;o&#x60; will be
+invoked with only one argument."
+          >
+            o
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#of"
+            title="Returns a singleton array containing the value provided.
+
+Note this &#x60;of&#x60; is different from the ES6 &#x60;of&#x60;; See
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of"
+          >
+            of
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#once"
+            title="Accepts a function &#x60;fn&#x60; and returns a function that guards invocation of
+&#x60;fn&#x60; such that &#x60;fn&#x60; can only ever be called once, no matter how many times
+the returned function is invoked. The first value calculated is returned in
+subsequent invocations."
+          >
+            once
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#partial"
+            title="Takes a function &#x60;f&#x60; and a list of arguments, and returns a function &#x60;g&#x60;.
+When applied, &#x60;g&#x60; returns the result of applying &#x60;f&#x60; to the arguments
+provided initially followed by the arguments provided to &#x60;g&#x60;."
+          >
+            partial
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#partialRight"
+            title="Takes a function &#x60;f&#x60; and a list of arguments, and returns a function &#x60;g&#x60;.
+When applied, &#x60;g&#x60; returns the result of applying &#x60;f&#x60; to the arguments
+provided to &#x60;g&#x60; followed by the arguments provided initially."
+          >
+            partialRight
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pipe"
+            title="Performs left-to-right function composition. The leftmost function may have
+any arity; the remaining functions must be unary.
+
+In some libraries this function is named &#x60;sequence&#x60;.
+
+**Note:** The result of pipe is not automatically curried."
+          >
+            pipe
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pipeK"
+            title="Returns the left-to-right Kleisli composition of the provided functions,
+each of which must return a value of a type supported by [&#x60;chain&#x60;](#chain).
+
+&#x60;R.pipeK(f, g, h)&#x60; is equivalent to &#x60;R.pipe(R.chain(f), R.chain(g), R.chain(h))&#x60;."
+          >
+            pipeK
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pipeP"
+            title="Performs left-to-right composition of one or more Promise-returning
+functions. The leftmost function may have any arity; the remaining functions
+must be unary."
+          >
+            pipeP
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#T"
+            title="A function that always returns &#x60;true&#x60;. Any passed in parameters are ignored."
+          >
+            T
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#tap"
+            title="Runs the given function with the supplied object, then returns the object."
+          >
+            tap
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#tryCatch"
+            title="&#x60;tryCatch&#x60; takes two functions, a &#x60;tryer&#x60; and a &#x60;catcher&#x60;. The returned
+function evaluates the &#x60;tryer&#x60;; if it does not throw, it simply returns the
+result. If the &#x60;tryer&#x60; *does* throw, the returned function evaluates the
+&#x60;catcher&#x60; function and returns its result. Note that for effective
+composition with this function, both the &#x60;tryer&#x60; and &#x60;catcher&#x60; functions
+must return the same type of results."
+          >
+            tryCatch
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unapply"
+            title="Takes a function &#x60;fn&#x60;, which takes a single array argument, and returns a
+function which:
+
+  - takes any number of positional arguments;
+  - passes these arguments to &#x60;fn&#x60; as an array; and
+  - returns the result.
+
+In other words, &#x60;R.unapply&#x60; derives a variadic function from a function which
+takes an array. &#x60;R.unapply&#x60; is the inverse of [&#x60;R.apply&#x60;](#apply)."
+          >
+            unapply
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unary"
+            title="Wraps a function of any arity (including nullary) in a function that accepts
+exactly 1 parameter. Any extraneous parameters will not be passed to the
+supplied function."
+          >
+            unary
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#uncurryN"
+            title="Returns a function of arity &#x60;n&#x60; from a (manually) curried function."
+          >
+            uncurryN
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#useWith"
+            title="Accepts a function &#x60;fn&#x60; and a list of transformer functions and returns a
+new curried function. When the new function is invoked, it calls the
+function &#x60;fn&#x60; with parameters consisting of the result of calling each
+supplied handler on successive arguments to the new function.
+
+If more arguments are passed to the returned function than transformer
+functions, those arguments are passed directly to &#x60;fn&#x60; as additional
+parameters. If you expect additional arguments that don&#x27;t need to be
+transformed, although you can ignore them, it&#x27;s best to pass an identity
+function so that the new function reports the correct arity."
+          >
+            useWith
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">Math</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#add"
+            title="Adds two values."
+          >
+            add
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dec"
+            title="Decrements its argument."
+          >
+            dec
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#divide"
+            title="Divides two numbers. Equivalent to &#x60;a / b&#x60;."
+          >
+            divide
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#inc"
+            title="Increments its argument."
+          >
+            inc
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mathMod"
+            title="&#x60;mathMod&#x60; behaves like the modulo operator should mathematically, unlike the
+&#x60;%&#x60; operator (and by extension, [&#x60;R.modulo&#x60;](#modulo)). So while
+&#x60;-17 % 5&#x60; is &#x60;-2&#x60;, &#x60;mathMod(-17, 5)&#x60; is &#x60;3&#x60;. &#x60;mathMod&#x60; requires Integer
+arguments, and returns NaN when the modulus is zero or negative."
+          >
+            mathMod
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mean"
+            title="Returns the mean of the given list of numbers."
+          >
+            mean
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#median"
+            title="Returns the median of the given list of numbers."
+          >
+            median
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#modulo"
+            title="Divides the first parameter by the second and returns the remainder. Note
+that this function preserves the JavaScript-style behavior for modulo. For
+mathematical modulo see [&#x60;mathMod&#x60;](#mathMod)."
+          >
+            modulo
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#multiply"
+            title="Multiplies two numbers. Equivalent to &#x60;a * b&#x60; but curried."
+          >
+            multiply
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#negate"
+            title="Negates its argument."
+          >
+            negate
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#product"
+            title="Multiplies together all the elements of a list."
+          >
+            product
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#subtract"
+            title="Subtracts its second argument from its first argument."
+          >
+            subtract
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sum"
+            title="Adds together all the elements of a list."
+          >
+            sum
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">List</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#adjust"
+            title="Applies a function to the value at the given index of an array, returning a
+new copy of the array with the element at the given index replaced with the
+result of the function application."
+          >
+            adjust
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#all"
+            title="Returns &#x60;true&#x60; if all elements of the list match the predicate, &#x60;false&#x60; if
+there are any that don&#x27;t.
+
+Dispatches to the &#x60;all&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            all
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#any"
+            title="Returns &#x60;true&#x60; if at least one of elements of the list match the predicate,
+&#x60;false&#x60; otherwise.
+
+Dispatches to the &#x60;any&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            any
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#aperture"
+            title="Returns a new list, composed of n-tuples of consecutive elements. If &#x60;n&#x60; is
+greater than the length of the list, an empty list is returned.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            aperture
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#append"
+            title="Returns a new list containing the contents of the given list, followed by
+the given element."
+          >
+            append
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#chain"
+            title="&#x60;chain&#x60; maps a function over a list and concatenates the results. &#x60;chain&#x60;
+is also known as &#x60;flatMap&#x60; in some libraries
+
+Dispatches to the &#x60;chain&#x60; method of the second argument, if present,
+according to the [FantasyLand Chain spec](https://github.com/fantasyland/fantasy-land#chain)."
+          >
+            chain
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#concat"
+            title="Returns the result of concatenating the given lists or strings.
+
+Note: &#x60;R.concat&#x60; expects both arguments to be of the same type,
+unlike the native &#x60;Array.prototype.concat&#x60; method. It will throw
+an error if you &#x60;concat&#x60; an Array with a non-Array value.
+
+Dispatches to the &#x60;concat&#x60; method of the first argument, if present."
+          >
+            concat
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#contains"
+            title="Returns &#x60;true&#x60; if the specified value is equal, in [&#x60;R.equals&#x60;](#equals)
+terms, to at least one element of the given list; &#x60;false&#x60; otherwise."
+          >
+            contains
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#drop"
+            title="Returns all but the first &#x60;n&#x60; elements of the given list, string, or
+transducer/transformer (or object with a &#x60;drop&#x60; method).
+
+Dispatches to the &#x60;drop&#x60; method of the second argument, if present."
+          >
+            drop
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dropLast"
+            title="Returns a list containing all but the last &#x60;n&#x60; elements of the given &#x60;list&#x60;."
+          >
+            dropLast
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dropLastWhile"
+            title="Returns a new list excluding all the tailing elements of a given list which
+satisfy the supplied predicate function. It passes each value from the right
+to the supplied predicate function, skipping elements until the predicate
+function returns a &#x60;falsy&#x60; value. The predicate function is applied to one argument:
+*(value)*."
+          >
+            dropLastWhile
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dropRepeats"
+            title="Returns a new list without any consecutively repeating elements.
+[&#x60;R.equals&#x60;](#equals) is used to determine equality.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            dropRepeats
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dropRepeatsWith"
+            title="Returns a new list without any consecutively repeating elements. Equality is
+determined by applying the supplied predicate to each pair of consecutive elements. The
+first element in a series of equal elements will be preserved.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            dropRepeatsWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dropWhile"
+            title="Returns a new list excluding the leading elements of a given list which
+satisfy the supplied predicate function. It passes each value to the supplied
+predicate function, skipping elements while the predicate function returns
+&#x60;true&#x60;. The predicate function is applied to one argument: *(value)*.
+
+Dispatches to the &#x60;dropWhile&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            dropWhile
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#endsWith"
+            title="Checks if a list ends with the provided values"
+          >
+            endsWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#filter"
+            title="Takes a predicate and a &#x60;Filterable&#x60;, and returns a new filterable of the
+same type containing the members of the given filterable which satisfy the
+given predicate. Filterable objects include plain objects or any object
+that has a filter method such as &#x60;Array&#x60;.
+
+Dispatches to the &#x60;filter&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            filter
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#find"
+            title="Returns the first element of the list which matches the predicate, or
+&#x60;undefined&#x60; if no element matches.
+
+Dispatches to the &#x60;find&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            find
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#findIndex"
+            title="Returns the index of the first element of the list which matches the
+predicate, or &#x60;-1&#x60; if no element matches.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            findIndex
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#findLast"
+            title="Returns the last element of the list which matches the predicate, or
+&#x60;undefined&#x60; if no element matches.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            findLast
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#findLastIndex"
+            title="Returns the index of the last element of the list which matches the
+predicate, or &#x60;-1&#x60; if no element matches.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            findLastIndex
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#flatten"
+            title="Returns a new list by pulling every item out of it (and all its sub-arrays)
+and putting them in a new array, depth-first."
+          >
+            flatten
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#forEach"
+            title="Iterate over an input &#x60;list&#x60;, calling a provided function &#x60;fn&#x60; for each
+element in the list.
+
+&#x60;fn&#x60; receives one argument: *(value)*.
+
+Note: &#x60;R.forEach&#x60; does not skip deleted or unassigned indices (sparse
+arrays), unlike the native &#x60;Array.prototype.forEach&#x60; method. For more
+details on this behavior, see:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Description
+
+Also note that, unlike &#x60;Array.prototype.forEach&#x60;, Ramda&#x27;s &#x60;forEach&#x60; returns
+the original array. In some libraries this function is named &#x60;each&#x60;.
+
+Dispatches to the &#x60;forEach&#x60; method of the second argument, if present."
+          >
+            forEach
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#fromPairs"
+            title="Creates a new object from a list key-value pairs. If a key appears in
+multiple pairs, the rightmost pair is included in the object."
+          >
+            fromPairs
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#groupBy"
+            title="Splits a list into sub-lists stored in an object, based on the result of
+calling a String-returning function on each element, and grouping the
+results according to values returned.
+
+Dispatches to the &#x60;groupBy&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            groupBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#groupWith"
+            title="Takes a list and returns a list of lists where each sublist&#x27;s elements are
+all satisfied pairwise comparison according to the provided function.
+Only adjacent elements are passed to the comparison function."
+          >
+            groupWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#head"
+            title="Returns the first element of the given list or string. In some libraries
+this function is named &#x60;first&#x60;."
+          >
+            head
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#indexBy"
+            title="Given a function that generates a key, turns a list of objects into an
+object indexing the objects by the given key. Note that if multiple
+objects generate the same value for the indexing key only the last value
+will be included in the generated object.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            indexBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#indexOf"
+            title="Returns the position of the first occurrence of an item in an array, or -1
+if the item is not included in the array. [&#x60;R.equals&#x60;](#equals) is used to
+determine equality."
+          >
+            indexOf
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#init"
+            title="Returns all but the last element of the given list or string."
+          >
+            init
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#insert"
+            title="Inserts the supplied element into the list, at the specified &#x60;index&#x60;. _Note that
+this is not destructive_: it returns a copy of the list with the changes.
+&lt;small&gt;No lists have been harmed in the application of this function.&lt;/small&gt;"
+          >
+            insert
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#insertAll"
+            title="Inserts the sub-list into the list, at the specified &#x60;index&#x60;. _Note that this is not
+destructive_: it returns a copy of the list with the changes.
+&lt;small&gt;No lists have been harmed in the application of this function.&lt;/small&gt;"
+          >
+            insertAll
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#intersperse"
+            title="Creates a new list with the separator interposed between elements.
+
+Dispatches to the &#x60;intersperse&#x60; method of the second argument, if present."
+          >
+            intersperse
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#into"
+            title="Transforms the items of the list with the transducer and appends the
+transformed items to the accumulator using an appropriate iterator function
+based on the accumulator type.
+
+The accumulator can be an array, string, object or a transformer. Iterated
+items will be appended to arrays and concatenated to strings. Objects will
+be merged directly or 2-item arrays will be merged as key, value pairs.
+
+The accumulator can also be a transformer object that provides a 2-arity
+reducing iterator function, step, 0-arity initial value function, init, and
+1-arity result extraction function result. The step function is used as the
+iterator function in reduce. The result function is used to convert the
+final accumulator into the return type and in most cases is R.identity. The
+init function is used to provide the initial accumulator.
+
+The iteration is performed with [&#x60;R.reduce&#x60;](#reduce) after initializing the
+transducer."
+          >
+            into
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#join"
+            title="Returns a string made by inserting the &#x60;separator&#x60; between each element and
+concatenating all the elements into a single string."
+          >
+            join
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#last"
+            title="Returns the last element of the given list or string."
+          >
+            last
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lastIndexOf"
+            title="Returns the position of the last occurrence of an item in an array, or -1 if
+the item is not included in the array. [&#x60;R.equals&#x60;](#equals) is used to
+determine equality."
+          >
+            lastIndexOf
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#length"
+            title="Returns the number of elements in the array by returning &#x60;list.length&#x60;."
+          >
+            length
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#map"
+            title="Takes a function and
+a [functor](https://github.com/fantasyland/fantasy-land#functor),
+applies the function to each of the functor&#x27;s values, and returns
+a functor of the same shape.
+
+Ramda provides suitable &#x60;map&#x60; implementations for &#x60;Array&#x60; and &#x60;Object&#x60;,
+so this function may be applied to &#x60;[1, 2, 3]&#x60; or &#x60;{x: 1, y: 2, z: 3}&#x60;.
+
+Dispatches to the &#x60;map&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position.
+
+Also treats functions as functors and will compose them together."
+          >
+            map
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mapAccum"
+            title="The &#x60;mapAccum&#x60; function behaves like a combination of map and reduce; it
+applies a function to each element of a list, passing an accumulating
+parameter from left to right, and returning a final value of this
+accumulator together with the new list.
+
+The iterator function receives two arguments, *acc* and *value*, and should
+return a tuple *[acc, value]*."
+          >
+            mapAccum
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mapAccumRight"
+            title="The &#x60;mapAccumRight&#x60; function behaves like a combination of map and reduce; it
+applies a function to each element of a list, passing an accumulating
+parameter from right to left, and returning a final value of this
+accumulator together with the new list.
+
+Similar to [&#x60;mapAccum&#x60;](#mapAccum), except moves through the input list from
+the right to the left.
+
+The iterator function receives two arguments, *value* and *acc*, and should
+return a tuple *[value, acc]*."
+          >
+            mapAccumRight
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeAll"
+            title="Merges a list of objects together into one object."
+          >
+            mergeAll
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#none"
+            title="Returns &#x60;true&#x60; if no elements of the list match the predicate, &#x60;false&#x60;
+otherwise.
+
+Dispatches to the &#x60;any&#x60; method of the second argument, if present."
+          >
+            none
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#nth"
+            title="Returns the nth element of the given list or string. If n is negative the
+element at index length + n is returned."
+          >
+            nth
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pair"
+            title="Takes two arguments, &#x60;fst&#x60; and &#x60;snd&#x60;, and returns &#x60;[fst, snd]&#x60;."
+          >
+            pair
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#partition"
+            title="Takes a predicate and a list or other &#x60;Filterable&#x60; object and returns the
+pair of filterable objects of the same type of elements which do and do not
+satisfy, the predicate, respectively. Filterable objects include plain objects or any object
+that has a filter method such as &#x60;Array&#x60;."
+          >
+            partition
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pluck"
+            title="Returns a new list by plucking the same named property off all objects in
+the list supplied.
+
+&#x60;pluck&#x60; will work on
+any [functor](https://github.com/fantasyland/fantasy-land#functor) in
+addition to arrays, as it is equivalent to &#x60;R.map(R.prop(k), f)&#x60;."
+          >
+            pluck
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#prepend"
+            title="Returns a new list with the given element at the front, followed by the
+contents of the list."
+          >
+            prepend
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#range"
+            title="Returns a list of numbers from &#x60;from&#x60; (inclusive) to &#x60;to&#x60; (exclusive)."
+          >
+            range
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reduce"
+            title="Returns a single item by iterating through the list, successively calling
+the iterator function and passing it an accumulator value and the current
+value from the array, and then passing the result to the next call.
+
+The iterator function receives two values: *(acc, value)*. It may use
+[&#x60;R.reduced&#x60;](#reduced) to shortcut the iteration.
+
+The arguments&#x27; order of [&#x60;reduceRight&#x60;](#reduceRight)&#x27;s iterator function
+is *(value, acc)*.
+
+Note: &#x60;R.reduce&#x60; does not skip deleted or unassigned indices (sparse
+arrays), unlike the native &#x60;Array.prototype.reduce&#x60; method. For more details
+on this behavior, see:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description
+
+Dispatches to the &#x60;reduce&#x60; method of the third argument, if present. When
+doing so, it is up to the user to handle the [&#x60;R.reduced&#x60;](#reduced)
+shortcuting, as this is not implemented by &#x60;reduce&#x60;."
+          >
+            reduce
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reduceBy"
+            title="Groups the elements of the list according to the result of calling
+the String-returning function &#x60;keyFn&#x60; on each element and reduces the elements
+of each group to a single value via the reducer function &#x60;valueFn&#x60;.
+
+This function is basically a more general [&#x60;groupBy&#x60;](#groupBy) function.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            reduceBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reduced"
+            title="Returns a value wrapped to indicate that it is the final value of the reduce
+and transduce functions. The returned value should be considered a black
+box: the internal structure is not guaranteed to be stable.
+
+Note: this optimization is unavailable to functions not explicitly listed
+above. For instance, it is not currently supported by
+[&#x60;reduceRight&#x60;](#reduceRight)."
+          >
+            reduced
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reduceRight"
+            title="Returns a single item by iterating through the list, successively calling
+the iterator function and passing it an accumulator value and the current
+value from the array, and then passing the result to the next call.
+
+Similar to [&#x60;reduce&#x60;](#reduce), except moves through the input list from the
+right to the left.
+
+The iterator function receives two values: *(value, acc)*, while the arguments&#x27;
+order of &#x60;reduce&#x60;&#x27;s iterator function is *(acc, value)*.
+
+Note: &#x60;R.reduceRight&#x60; does not skip deleted or unassigned indices (sparse
+arrays), unlike the native &#x60;Array.prototype.reduceRight&#x60; method. For more details
+on this behavior, see:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description"
+          >
+            reduceRight
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reduceWhile"
+            title="Like [&#x60;reduce&#x60;](#reduce), &#x60;reduceWhile&#x60; returns a single item by iterating
+through the list, successively calling the iterator function. &#x60;reduceWhile&#x60;
+also takes a predicate that is evaluated before each step. If the predicate
+returns &#x60;false&#x60;, it &quot;short-circuits&quot; the iteration and returns the current
+value of the accumulator."
+          >
+            reduceWhile
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reject"
+            title="The complement of [&#x60;filter&#x60;](#filter).
+
+Acts as a transducer if a transformer is given in list position. Filterable
+objects include plain objects or any object that has a filter method such
+as &#x60;Array&#x60;."
+          >
+            reject
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#remove"
+            title="Removes the sub-list of &#x60;list&#x60; starting at index &#x60;start&#x60; and containing
+&#x60;count&#x60; elements. _Note that this is not destructive_: it returns a copy of
+the list with the changes.
+&lt;small&gt;No lists have been harmed in the application of this function.&lt;/small&gt;"
+          >
+            remove
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#repeat"
+            title="Returns a fixed list of size &#x60;n&#x60; containing a specified identical value."
+          >
+            repeat
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#reverse"
+            title="Returns a new list or string with the elements or characters in reverse
+order."
+          >
+            reverse
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#scan"
+            title="Scan is similar to [&#x60;reduce&#x60;](#reduce), but returns a list of successively
+reduced values from the left"
+          >
+            scan
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sequence"
+            title="Transforms a [Traversable](https://github.com/fantasyland/fantasy-land#traversable)
+of [Applicative](https://github.com/fantasyland/fantasy-land#applicative) into an
+Applicative of Traversable.
+
+Dispatches to the &#x60;sequence&#x60; method of the second argument, if present."
+          >
+            sequence
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#slice"
+            title="Returns the elements of the given list or string (or object with a &#x60;slice&#x60;
+method) from &#x60;fromIndex&#x60; (inclusive) to &#x60;toIndex&#x60; (exclusive).
+
+Dispatches to the &#x60;slice&#x60; method of the third argument, if present."
+          >
+            slice
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sort"
+            title="Returns a copy of the list, sorted according to the comparator function,
+which should accept two values at a time and return a negative number if the
+first value is smaller, a positive number if it&#x27;s larger, and zero if they
+are equal. Please note that this is a **copy** of the list. It does not
+modify the original."
+          >
+            sort
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#splitAt"
+            title="Splits a given list or string at a given index."
+          >
+            splitAt
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#splitEvery"
+            title="Splits a collection into slices of the specified length."
+          >
+            splitEvery
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#splitWhen"
+            title="Takes a list and a predicate and returns a pair of lists with the following properties:
+
+ - the result of concatenating the two output lists is equivalent to the input list;
+ - none of the elements of the first output list satisfies the predicate; and
+ - if the second output list is non-empty, its first element satisfies the predicate."
+          >
+            splitWhen
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#startsWith"
+            title="Checks if a list starts with the provided values"
+          >
+            startsWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#tail"
+            title="Returns all but the first element of the given list or string (or object
+with a &#x60;tail&#x60; method).
+
+Dispatches to the &#x60;slice&#x60; method of the first argument, if present."
+          >
+            tail
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#take"
+            title="Returns the first &#x60;n&#x60; elements of the given list, string, or
+transducer/transformer (or object with a &#x60;take&#x60; method).
+
+Dispatches to the &#x60;take&#x60; method of the second argument, if present."
+          >
+            take
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#takeLast"
+            title="Returns a new list containing the last &#x60;n&#x60; elements of the given list.
+If &#x60;n &gt; list.length&#x60;, returns a list of &#x60;list.length&#x60; elements."
+          >
+            takeLast
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#takeLastWhile"
+            title="Returns a new list containing the last &#x60;n&#x60; elements of a given list, passing
+each value to the supplied predicate function, and terminating when the
+predicate function returns &#x60;false&#x60;. Excludes the element that caused the
+predicate function to fail. The predicate function is passed one argument:
+*(value)*."
+          >
+            takeLastWhile
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#takeWhile"
+            title="Returns a new list containing the first &#x60;n&#x60; elements of a given list,
+passing each value to the supplied predicate function, and terminating when
+the predicate function returns &#x60;false&#x60;. Excludes the element that caused the
+predicate function to fail. The predicate function is passed one argument:
+*(value)*.
+
+Dispatches to the &#x60;takeWhile&#x60; method of the second argument, if present.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            takeWhile
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#times"
+            title="Calls an input function &#x60;n&#x60; times, returning an array containing the results
+of those function calls.
+
+&#x60;fn&#x60; is passed one argument: The current value of &#x60;n&#x60;, which begins at &#x60;0&#x60;
+and is gradually incremented to &#x60;n - 1&#x60;."
+          >
+            times
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#transduce"
+            title="Initializes a transducer using supplied iterator function. Returns a single
+item by iterating through the list, successively calling the transformed
+iterator function and passing it an accumulator value and the current value
+from the array, and then passing the result to the next call.
+
+The iterator function receives two values: *(acc, value)*. It will be
+wrapped as a transformer to initialize the transducer. A transformer can be
+passed directly in place of an iterator function. In both cases, iteration
+may be stopped early with the [&#x60;R.reduced&#x60;](#reduced) function.
+
+A transducer is a function that accepts a transformer and returns a
+transformer and can be composed directly.
+
+A transformer is an an object that provides a 2-arity reducing iterator
+function, step, 0-arity initial value function, init, and 1-arity result
+extraction function, result. The step function is used as the iterator
+function in reduce. The result function is used to convert the final
+accumulator into the return type and in most cases is
+[&#x60;R.identity&#x60;](#identity). The init function can be used to provide an
+initial accumulator, but is ignored by transduce.
+
+The iteration is performed with [&#x60;R.reduce&#x60;](#reduce) after initializing the transducer."
+          >
+            transduce
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#transpose"
+            title="Transposes the rows and columns of a 2D list.
+When passed a list of &#x60;n&#x60; lists of length &#x60;x&#x60;,
+returns a list of &#x60;x&#x60; lists of length &#x60;n&#x60;."
+          >
+            transpose
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#traverse"
+            title="Maps an [Applicative](https://github.com/fantasyland/fantasy-land#applicative)-returning
+function over a [Traversable](https://github.com/fantasyland/fantasy-land#traversable),
+then uses [&#x60;sequence&#x60;](#sequence) to transform the resulting Traversable of Applicative
+into an Applicative of Traversable.
+
+Dispatches to the &#x60;sequence&#x60; method of the third argument, if present."
+          >
+            traverse
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unfold"
+            title="Builds a list from a seed value. Accepts an iterator function, which returns
+either false to stop iteration or an array of length 2 containing the value
+to add to the resulting list and the seed to be used in the next call to the
+iterator function.
+
+The iterator function receives one argument: *(seed)*."
+          >
+            unfold
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#uniq"
+            title="Returns a new list containing only one copy of each element in the original
+list. [&#x60;R.equals&#x60;](#equals) is used to determine equality."
+          >
+            uniq
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#uniqBy"
+            title="Returns a new list containing only one copy of each element in the original
+list, based upon the value returned by applying the supplied function to
+each list element. Prefers the first item if the supplied function produces
+the same value on two items. [&#x60;R.equals&#x60;](#equals) is used for comparison."
+          >
+            uniqBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#uniqWith"
+            title="Returns a new list containing only one copy of each element in the original
+list, based upon the value returned by applying the supplied predicate to
+two list elements. Prefers the first item if two items compare equal based
+on the predicate."
+          >
+            uniqWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unnest"
+            title="Shorthand for &#x60;R.chain(R.identity)&#x60;, which removes one level of nesting from
+any [Chain](https://github.com/fantasyland/fantasy-land#chain)."
+          >
+            unnest
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#update"
+            title="Returns a new copy of the array with the element at the provided index
+replaced with the given value."
+          >
+            update
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#without"
+            title="Returns a new list without values in the first argument.
+[&#x60;R.equals&#x60;](#equals) is used to determine equality.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            without
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#xprod"
+            title="Creates a new list out of the two supplied by creating each possible pair
+from the lists."
+          >
+            xprod
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#zip"
+            title="Creates a new list out of the two supplied by pairing up equally-positioned
+items from both lists. The returned list is truncated to the length of the
+shorter of the two input lists.
+Note: &#x60;zip&#x60; is equivalent to &#x60;zipWith(function(a, b) { return [a, b] })&#x60;."
+          >
+            zip
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#zipObj"
+            title="Creates a new object out of a list of keys and a list of values.
+Key/value pairing is truncated to the length of the shorter of the two lists.
+Note: &#x60;zipObj&#x60; is equivalent to &#x60;pipe(zipWith(pair), fromPairs)&#x60;."
+          >
+            zipObj
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#zipWith"
+            title="Creates a new list out of the two supplied by applying the function to each
+equally-positioned pair in the lists. The returned list is truncated to the
+length of the shorter of the two input lists."
+          >
+            zipWith
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">Logic</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#allPass"
+            title="Takes a list of predicates and returns a predicate that returns true for a
+given list of arguments if every one of the provided predicates is satisfied
+by those arguments.
+
+The function returned is a curried function whose arity matches that of the
+highest-arity predicate."
+          >
+            allPass
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#and"
+            title="Returns &#x60;true&#x60; if both arguments are &#x60;true&#x60;; &#x60;false&#x60; otherwise."
+          >
+            and
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#anyPass"
+            title="Takes a list of predicates and returns a predicate that returns true for a
+given list of arguments if at least one of the provided predicates is
+satisfied by those arguments.
+
+The function returned is a curried function whose arity matches that of the
+highest-arity predicate."
+          >
+            anyPass
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#both"
+            title="A function which calls the two provided functions and returns the &#x60;&amp;&amp;&#x60;
+of the results.
+It returns the result of the first function if it is false-y and the result
+of the second function otherwise. Note that this is short-circuited,
+meaning that the second function will not be invoked if the first returns a
+false-y value.
+
+In addition to functions, &#x60;R.both&#x60; also accepts any fantasy-land compatible
+applicative functor."
+          >
+            both
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#complement"
+            title="Takes a function &#x60;f&#x60; and returns a function &#x60;g&#x60; such that if called with the same arguments
+when &#x60;f&#x60; returns a &quot;truthy&quot; value, &#x60;g&#x60; returns &#x60;false&#x60; and when &#x60;f&#x60; returns a &quot;falsy&quot; value &#x60;g&#x60; returns &#x60;true&#x60;.
+
+&#x60;R.complement&#x60; may be applied to any functor"
+          >
+            complement
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#cond"
+            title="Returns a function, &#x60;fn&#x60;, which encapsulates &#x60;if/else, if/else, ...&#x60; logic.
+&#x60;R.cond&#x60; takes a list of [predicate, transformer] pairs. All of the arguments
+to &#x60;fn&#x60; are applied to each of the predicates in turn until one returns a
+&quot;truthy&quot; value, at which point &#x60;fn&#x60; returns the result of applying its
+arguments to the corresponding transformer. If none of the predicates
+matches, &#x60;fn&#x60; returns undefined."
+          >
+            cond
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#defaultTo"
+            title="Returns the second argument if it is not &#x60;null&#x60;, &#x60;undefined&#x60; or &#x60;NaN&#x60;;
+otherwise the first argument is returned."
+          >
+            defaultTo
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#either"
+            title="A function wrapping calls to the two functions in an &#x60;||&#x60; operation,
+returning the result of the first function if it is truth-y and the result
+of the second function otherwise. Note that this is short-circuited,
+meaning that the second function will not be invoked if the first returns a
+truth-y value.
+
+In addition to functions, &#x60;R.either&#x60; also accepts any fantasy-land compatible
+applicative functor."
+          >
+            either
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#ifElse"
+            title="Creates a function that will process either the &#x60;onTrue&#x60; or the &#x60;onFalse&#x60;
+function depending upon the result of the &#x60;condition&#x60; predicate."
+          >
+            ifElse
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#isEmpty"
+            title="Returns &#x60;true&#x60; if the given value is its type&#x27;s empty value; &#x60;false&#x60;
+otherwise."
+          >
+            isEmpty
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#not"
+            title="A function that returns the &#x60;!&#x60; of its argument. It will return &#x60;true&#x60; when
+passed false-y value, and &#x60;false&#x60; when passed a truth-y one."
+          >
+            not
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#or"
+            title="Returns &#x60;true&#x60; if one or both of its arguments are &#x60;true&#x60;. Returns &#x60;false&#x60;
+if both arguments are &#x60;false&#x60;."
+          >
+            or
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pathSatisfies"
+            title="Returns &#x60;true&#x60; if the specified object property at given path satisfies the
+given predicate; &#x60;false&#x60; otherwise."
+          >
+            pathSatisfies
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#propSatisfies"
+            title="Returns &#x60;true&#x60; if the specified object property satisfies the given
+predicate; &#x60;false&#x60; otherwise."
+          >
+            propSatisfies
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unless"
+            title="Tests the final argument by passing it to the given predicate function. If
+the predicate is not satisfied, the function will return the result of
+calling the &#x60;whenFalseFn&#x60; function with the same argument. If the predicate
+is satisfied, the argument is returned as is."
+          >
+            unless
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#until"
+            title="Takes a predicate, a transformation function, and an initial value,
+and returns a value of the same type as the initial value.
+It does so by applying the transformation until the predicate is satisfied,
+at which point it returns the satisfactory value."
+          >
+            until
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#when"
+            title="Tests the final argument by passing it to the given predicate function. If
+the predicate is satisfied, the function will return the result of calling
+the &#x60;whenTrueFn&#x60; function with the same argument. If the predicate is not
+satisfied, the argument is returned as is."
+          >
+            when
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">Object</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#assoc"
+            title="Makes a shallow clone of an object, setting or overriding the specified
+property with the given value. Note that this copies and flattens prototype
+properties onto the new object as well. All non-primitive properties are
+copied by reference."
+          >
+            assoc
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#assocPath"
+            title="Makes a shallow clone of an object, setting or overriding the nodes required
+to create the given path, and placing the specific value at the tail end of
+that path. Note that this copies and flattens prototype properties onto the
+new object as well. All non-primitive properties are copied by reference."
+          >
+            assocPath
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#clone"
+            title="Creates a deep copy of the value which may contain (nested) &#x60;Array&#x60;s and
+&#x60;Object&#x60;s, &#x60;Number&#x60;s, &#x60;String&#x60;s, &#x60;Boolean&#x60;s and &#x60;Date&#x60;s. &#x60;Function&#x60;s are
+assigned by reference rather than copied
+
+Dispatches to a &#x60;clone&#x60; method if present."
+          >
+            clone
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dissoc"
+            title="Returns a new object that does not contain a &#x60;prop&#x60; property."
+          >
+            dissoc
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#dissocPath"
+            title="Makes a shallow clone of an object, omitting the property at the given path.
+Note that this copies and flattens prototype properties onto the new object
+as well. All non-primitive properties are copied by reference."
+          >
+            dissocPath
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#eqProps"
+            title="Reports whether two objects have the same value, in [&#x60;R.equals&#x60;](#equals)
+terms, for the specified property. Useful as a curried predicate."
+          >
+            eqProps
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#evolve"
+            title="Creates a new object by recursively evolving a shallow copy of &#x60;object&#x60;,
+according to the &#x60;transformation&#x60; functions. All non-primitive properties
+are copied by reference.
+
+A &#x60;transformation&#x60; function will not be invoked if its corresponding key
+does not exist in the evolved object."
+          >
+            evolve
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#forEachObjIndexed"
+            title="Iterate over an input &#x60;object&#x60;, calling a provided function &#x60;fn&#x60; for each
+key and value in the object.
+
+&#x60;fn&#x60; receives three argument: *(value, key, obj)*."
+          >
+            forEachObjIndexed
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#has"
+            title="Returns whether or not an object has an own property with the specified name"
+          >
+            has
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#hasIn"
+            title="Returns whether or not an object or its prototype chain has a property with
+the specified name"
+          >
+            hasIn
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#invert"
+            title="Same as [&#x60;R.invertObj&#x60;](#invertObj), however this accounts for objects with
+duplicate values by putting the values into an array."
+          >
+            invert
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#invertObj"
+            title="Returns a new object with the keys of the given object as values, and the
+values of the given object, which are coerced to strings, as keys. Note
+that the last key found is preferred when handling the same value."
+          >
+            invertObj
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#keys"
+            title="Returns a list containing the names of all the enumerable own properties of
+the supplied object.
+Note that the order of the output array is not guaranteed to be consistent
+across different JS platforms."
+          >
+            keys
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#keysIn"
+            title="Returns a list containing the names of all the properties of the supplied
+object, including prototype properties.
+Note that the order of the output array is not guaranteed to be consistent
+across different JS platforms."
+          >
+            keysIn
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lens"
+            title="Returns a lens for the given getter and setter functions. The getter &quot;gets&quot;
+the value of the focus; the setter &quot;sets&quot; the value of the focus. The setter
+should not mutate the data structure."
+          >
+            lens
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lensIndex"
+            title="Returns a lens whose focus is the specified index."
+          >
+            lensIndex
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lensPath"
+            title="Returns a lens whose focus is the specified path."
+          >
+            lensPath
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lensProp"
+            title="Returns a lens whose focus is the specified property."
+          >
+            lensProp
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mapObjIndexed"
+            title="An Object-specific version of [&#x60;map&#x60;](#map). The function is applied to three
+arguments: *(value, key, obj)*. If only the value is significant, use
+[&#x60;map&#x60;](#map) instead."
+          >
+            mapObjIndexed
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#merge"
+            title="Create a new object with the own properties of the first object merged with
+the own properties of the second object. If a key exists in both objects,
+the value from the second object will be used."
+          >
+            merge
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeDeepLeft"
+            title="Creates a new object with the own properties of the first object merged with
+the own properties of the second object. If a key exists in both objects:
+- and both values are objects, the two values will be recursively merged
+- otherwise the value from the first object will be used."
+          >
+            mergeDeepLeft
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeDeepRight"
+            title="Creates a new object with the own properties of the first object merged with
+the own properties of the second object. If a key exists in both objects:
+- and both values are objects, the two values will be recursively merged
+- otherwise the value from the second object will be used."
+          >
+            mergeDeepRight
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeDeepWith"
+            title="Creates a new object with the own properties of the two provided objects.
+If a key exists in both objects:
+- and both associated values are also objects then the values will be
+  recursively merged.
+- otherwise the provided function is applied to associated values using the
+  resulting value as the new value associated with the key.
+If a key only exists in one object, the value will be associated with the key
+of the resulting object."
+          >
+            mergeDeepWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeDeepWithKey"
+            title="Creates a new object with the own properties of the two provided objects.
+If a key exists in both objects:
+- and both associated values are also objects then the values will be
+  recursively merged.
+- otherwise the provided function is applied to the key and associated values
+  using the resulting value as the new value associated with the key.
+If a key only exists in one object, the value will be associated with the key
+of the resulting object."
+          >
+            mergeDeepWithKey
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeWith"
+            title="Creates a new object with the own properties of the two provided objects. If
+a key exists in both objects, the provided function is applied to the values
+associated with the key in each object, with the result being used as the
+value associated with the key in the returned object."
+          >
+            mergeWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#mergeWithKey"
+            title="Creates a new object with the own properties of the two provided objects. If
+a key exists in both objects, the provided function is applied to the key
+and the values associated with the key in each object, with the result being
+used as the value associated with the key in the returned object."
+          >
+            mergeWithKey
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#objOf"
+            title="Creates an object containing a single key:value pair."
+          >
+            objOf
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#omit"
+            title="Returns a partial copy of an object omitting the keys specified."
+          >
+            omit
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#over"
+            title="Returns the result of &quot;setting&quot; the portion of the given data structure
+focused by the given lens to the result of applying the given function to
+the focused value."
+          >
+            over
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#path"
+            title="Retrieve the value at a given path."
+          >
+            path
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pathOr"
+            title="If the given, non-null object has a value at the given path, returns the
+value at that path. Otherwise returns the provided default value."
+          >
+            pathOr
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pick"
+            title="Returns a partial copy of an object containing only the keys specified. If
+the key does not exist, the property is ignored."
+          >
+            pick
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pickAll"
+            title="Similar to &#x60;pick&#x60; except that this one includes a &#x60;key: undefined&#x60; pair for
+properties that don&#x27;t exist."
+          >
+            pickAll
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pickBy"
+            title="Returns a partial copy of an object containing only the keys that satisfy
+the supplied predicate."
+          >
+            pickBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#project"
+            title="Reasonable analog to SQL &#x60;select&#x60; statement."
+          >
+            project
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#prop"
+            title="Returns a function that when supplied an object returns the indicated
+property of that object, if it exists."
+          >
+            prop
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#propOr"
+            title="If the given, non-null object has an own property with the specified name,
+returns the value of that property. Otherwise returns the provided default
+value."
+          >
+            propOr
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#props"
+            title="Acts as multiple &#x60;prop&#x60;: array of keys in, array of values out. Preserves
+order."
+          >
+            props
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#set"
+            title="Returns the result of &quot;setting&quot; the portion of the given data structure
+focused by the given lens to the given value."
+          >
+            set
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#toPairs"
+            title="Converts an object into an array of key, value arrays. Only the object&#x27;s
+own properties are used.
+Note that the order of the output array is not guaranteed to be consistent
+across different JS platforms."
+          >
+            toPairs
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#toPairsIn"
+            title="Converts an object into an array of key, value arrays. The object&#x27;s own
+properties and prototype properties are used. Note that the order of the
+output array is not guaranteed to be consistent across different JS
+platforms."
+          >
+            toPairsIn
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#values"
+            title="Returns a list of all the enumerable own properties of the supplied object.
+Note that the order of the output array is not guaranteed across different
+JS platforms."
+          >
+            values
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#valuesIn"
+            title="Returns a list of all the properties, including prototype properties, of the
+supplied object.
+Note that the order of the output array is not guaranteed to be consistent
+across different JS platforms."
+          >
+            valuesIn
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#view"
+            title="Returns a &quot;view&quot; of the given data structure, determined by the given lens.
+The lens&#x27;s focus determines which portion of the data structure is visible."
+          >
+            view
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#where"
+            title="Takes a spec object and a test object; returns true if the test satisfies
+the spec. Each of the spec&#x27;s own properties must be a predicate function.
+Each predicate is applied to the value of the corresponding property of the
+test object. &#x60;where&#x60; returns true if all the predicates return true, false
+otherwise.
+
+&#x60;where&#x60; is well suited to declaratively expressing constraints for other
+functions such as [&#x60;filter&#x60;](#filter) and [&#x60;find&#x60;](#find)."
+          >
+            where
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#whereEq"
+            title="Takes a spec object and a test object; returns true if the test satisfies
+the spec, false otherwise. An object satisfies the spec if, for each of the
+spec&#x27;s own properties, accessing that property of the object gives the same
+value (in [&#x60;R.equals&#x60;](#equals) terms) as accessing that property of the
+spec.
+
+&#x60;whereEq&#x60; is a specialization of [&#x60;where&#x60;](#where)."
+          >
+            whereEq
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">Relation</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#clamp"
+            title="Restricts a number to be within a range.
+
+Also works for other ordered types such as Strings and Dates."
+          >
+            clamp
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#countBy"
+            title="Counts the elements of a list according to how many match each value of a
+key generated by the supplied function. Returns an object mapping the keys
+produced by &#x60;fn&#x60; to the number of occurrences in the list. Note that all
+keys are coerced to strings because of how JavaScript objects work.
+
+Acts as a transducer if a transformer is given in list position."
+          >
+            countBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#difference"
+            title="Finds the set (i.e. no duplicates) of all elements in the first list not
+contained in the second list. Objects and Arrays are compared in terms of
+value equality, not reference equality."
+          >
+            difference
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#differenceWith"
+            title="Finds the set (i.e. no duplicates) of all elements in the first list not
+contained in the second list. Duplication is determined according to the
+value returned by applying the supplied predicate to two list elements."
+          >
+            differenceWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#eqBy"
+            title="Takes a function and two values in its domain and returns &#x60;true&#x60; if the
+values map to the same value in the codomain; &#x60;false&#x60; otherwise."
+          >
+            eqBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#equals"
+            title="Returns &#x60;true&#x60; if its arguments are equivalent, &#x60;false&#x60; otherwise. Handles
+cyclical data structures.
+
+Dispatches symmetrically to the &#x60;equals&#x60; methods of both arguments, if
+present."
+          >
+            equals
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#gt"
+            title="Returns &#x60;true&#x60; if the first argument is greater than the second; &#x60;false&#x60;
+otherwise."
+          >
+            gt
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#gte"
+            title="Returns &#x60;true&#x60; if the first argument is greater than or equal to the second;
+&#x60;false&#x60; otherwise."
+          >
+            gte
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#identical"
+            title="Returns true if its arguments are identical, false otherwise. Values are
+identical if they reference the same memory. &#x60;NaN&#x60; is identical to &#x60;NaN&#x60;;
+&#x60;0&#x60; and &#x60;-0&#x60; are not identical."
+          >
+            identical
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#innerJoin"
+            title="Takes a predicate &#x60;pred&#x60;, a list &#x60;xs&#x60;, and a list &#x60;ys&#x60;, and returns a list
+&#x60;xs&#x27;&#x60; comprising each of the elements of &#x60;xs&#x60; which is equal to one or more
+elements of &#x60;ys&#x60; according to &#x60;pred&#x60;.
+
+&#x60;pred&#x60; must be a binary function expecting an element from each list.
+
+&#x60;xs&#x60;, &#x60;ys&#x60;, and &#x60;xs&#x27;&#x60; are treated as sets, semantically, so ordering should
+not be significant, but since &#x60;xs&#x27;&#x60; is ordered the implementation guarantees
+that its values are in the same order as they appear in &#x60;xs&#x60;. Duplicates are
+not removed, so &#x60;xs&#x27;&#x60; may contain duplicates if &#x60;xs&#x60; contains duplicates."
+          >
+            innerJoin
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#intersection"
+            title="Combines two lists into a set (i.e. no duplicates) composed of those
+elements common to both lists."
+          >
+            intersection
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#intersectionWith"
+            title="Combines two lists into a set (i.e. no duplicates) composed of those
+elements common to both lists. Duplication is determined according to the
+value returned by applying the supplied predicate to two list elements."
+          >
+            intersectionWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lt"
+            title="Returns &#x60;true&#x60; if the first argument is less than the second; &#x60;false&#x60;
+otherwise."
+          >
+            lt
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#lte"
+            title="Returns &#x60;true&#x60; if the first argument is less than or equal to the second;
+&#x60;false&#x60; otherwise."
+          >
+            lte
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#max"
+            title="Returns the larger of its two arguments."
+          >
+            max
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#maxBy"
+            title="Takes a function and two values, and returns whichever value produces the
+larger result when passed to the provided function."
+          >
+            maxBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#min"
+            title="Returns the smaller of its two arguments."
+          >
+            min
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#minBy"
+            title="Takes a function and two values, and returns whichever value produces the
+smaller result when passed to the provided function."
+          >
+            minBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pathEq"
+            title="Determines whether a nested path on an object has a specific value, in
+[&#x60;R.equals&#x60;](#equals) terms. Most likely used to filter a list."
+          >
+            pathEq
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#propEq"
+            title="Returns &#x60;true&#x60; if the specified object property is equal, in
+[&#x60;R.equals&#x60;](#equals) terms, to the given value; &#x60;false&#x60; otherwise."
+          >
+            propEq
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sortBy"
+            title="Sorts the list according to the supplied function."
+          >
+            sortBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sortWith"
+            title="Sorts a list according to a list of comparators."
+          >
+            sortWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#symmetricDifference"
+            title="Finds the set (i.e. no duplicates) of all elements contained in the first or
+second list, but not both."
+          >
+            symmetricDifference
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#symmetricDifferenceWith"
+            title="Finds the set (i.e. no duplicates) of all elements contained in the first or
+second list, but not both. Duplication is determined according to the value
+returned by applying the supplied predicate to two list elements."
+          >
+            symmetricDifferenceWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#union"
+            title="Combines two lists into a set (i.e. no duplicates) composed of the elements
+of each list."
+          >
+            union
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unionWith"
+            title="Combines two lists into a set (i.e. no duplicates) composed of the elements
+of each list. Duplication is determined according to the value returned by
+applying the supplied predicate to two list elements."
+          >
+            unionWith
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">Type</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#is"
+            title="See if an object (&#x60;val&#x60;) is an instance of the supplied constructor. This
+function will check up the inheritance chain, if any."
+          >
+            is
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#isNil"
+            title="Checks if the input value is &#x60;null&#x60; or &#x60;undefined&#x60;."
+          >
+            isNil
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#propIs"
+            title="Returns &#x60;true&#x60; if the specified object property is of the given type;
+&#x60;false&#x60; otherwise."
+          >
+            propIs
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#type"
+            title="Gives a single-word string description of the (native) type of a value,
+returning such answers as &#x27;Object&#x27;, &#x27;Number&#x27;, &#x27;Array&#x27;, or &#x27;Null&#x27;. Does not
+attempt to distinguish user Object types any further, reporting them all as
+&#x27;Object&#x27;."
+          >
+            type
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="category-title">String</h2>
+      <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#match"
+            title="Tests a regular expression against a String. Note that this function will
+return an empty array when there are no matches. This differs from
+[&#x60;String.prototype.match&#x60;](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+which returns &#x60;null&#x60; when there are no matches."
+          >
+            match
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#replace"
+            title="Replace a substring or regex match in a string with a replacement."
+          >
+            replace
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#split"
+            title="Splits a string into an array of strings based on the given
+separator."
+          >
+            split
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#test"
+            title="Determines whether a given string matches a given regular expression."
+          >
+            test
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#toLower"
+            title="The lower case version of a string."
+          >
+            toLower
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#toString"
+            title="Returns the string representation of the given value. &#x60;eval&#x60;&#x27;ing the output
+should result in a value equivalent to the input value. Many of the built-in
+&#x60;toString&#x60; methods do not satisfy this requirement.
+
+If the given value is an &#x60;[object Object]&#x60; with a &#x60;toString&#x60; method other
+than &#x60;Object.prototype.toString&#x60;, this method is invoked with no arguments
+to produce the return value. This means user-defined constructor functions
+can provide a suitable &#x60;toString&#x60; method. For example:
+
+    function Point(x, y) {
+      this.x &#x3D; x;
+      this.y &#x3D; y;
+    }
+
+    Point.prototype.toString &#x3D; function() {
+      return &#x27;new Point(&#x27; + this.x + &#x27;, &#x27; + this.y + &#x27;)&#x27;;
+    };
+
+    R.toString(new Point(1, 2)); //&#x3D;&gt; &#x27;new Point(1, 2)&#x27;"
+          >
+            toString
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#toUpper"
+            title="The upper case version of a string."
+          >
+            toUpper
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#trim"
+            title="Removes (strips) whitespace from both ends of the string."
+          >
+            trim
+          </a>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
+

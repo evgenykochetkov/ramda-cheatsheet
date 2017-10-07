@@ -1,0 +1,19 @@
+{
+  "name": "ramda-cheatsheet",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Evgeny Kochetkov",
+  "license": "MIT",
+  "repository": {
+    "url": ""
+  },
+  "scripts": {
+    "generate": "node ./index.js",
+    "gh-pages": "git subtree push --prefix dist origin gh-pages"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.10",
+    "jsdoc-api": "^4.0.0",
+    "ramda": "^0.24.1"
+  }
+}

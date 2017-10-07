@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Ramda Cheatsheet v{{version}}</title>
+    <style>
+      body {
+        font-family: monospace;
+      }
+
+      .category-title {
+        color: #849;
+      }
+
+      .category-items {
+        padding: 0;
+      }
+      .category-items > li {
+        list-style: none;
+        display: inline-block;
+      }
+
+      .func {
+        color: black;
+        text-decoration: none;
+      }
+      .func:focus, .func:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ramda v{{version}}</h1>
+
+    {{#each categories}}
+    <section>
+      <h2 class="category-title">{{@key}}</h2>
+      <ul class="category-items">
+      {{#each this}}
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#{{name}}"
+            title="{{description}}"
+          >
+            {{name}}
+          </a>
+        </li>
+      {{/each}}
+      </ul>
+    </section>
+    {{/each}}
+  </body>
+</html>
+
