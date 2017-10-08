@@ -10,3 +10,5 @@ Cheatsheet generated from Ramda's jsdoc comments to quickly glance over a list o
 yarn
 yarn generate
 ```
+
+Also see https://github.com/ramda/ramda/issues/1652
