@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Ramda Cheatsheet v0.24.1</title>
+    <title>Ramda Cheatsheet v0.25.0</title>
     <style>
       body {
         font-family: monospace;
@@ -28,7 +28,7 @@
     </style>
   </head>
   <body>
-    <h1>Ramda v0.24.1</h1>
+    <h1>Ramda v0.25.0</h1>
 
     <section>
       <h2 class="category-title">Function</h2>
@@ -122,6 +122,17 @@ to the result of calling its associated function with the supplied arguments."
         <li>
           <a
             class="func"
+            href="http://ramdajs.com/docs/#applyTo"
+            title="Takes a value and applies a function to it.
+
+This function is also known as the &#x60;thrush&#x60; combinator."
+          >
+            applyTo
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
             href="http://ramdajs.com/docs/#ascend"
             title="Makes an ascending comparator function out of a function that returns a value
 that can be compared with &#x60;&lt;&#x60; and &#x60;&gt;&#x60;."
@@ -193,7 +204,7 @@ any arity; the remaining functions must be unary.
             title="Returns the right-to-left Kleisli composition of the provided functions,
 each of which must return a value of a type supported by [&#x60;chain&#x60;](#chain).
 
-&#x60;R.composeK(h, g, f)&#x60; is equivalent to &#x60;R.compose(R.chain(h), R.chain(g), R.chain(f))&#x60;."
+&#x60;R.composeK(h, g, f)&#x60; is equivalent to &#x60;R.compose(R.chain(h), R.chain(g), f)&#x60;."
           >
             composeK
           </a>
@@ -319,8 +330,9 @@ that can be compared with &#x60;&lt;&#x60; and &#x60;&gt;&#x60;."
             href="http://ramdajs.com/docs/#empty"
             title="Returns the empty value of its argument&#x27;s type. Ramda defines the empty
 value of Array (&#x60;[]&#x60;), Object (&#x60;{}&#x60;), String (&#x60;&#x27;&#x27;&#x60;), and Arguments. Other
-types are supported if they define &#x60;&lt;Type&gt;.empty&#x60; and/or
-&#x60;&lt;Type&gt;.prototype.empty&#x60;.
+types are supported if they define &#x60;&lt;Type&gt;.empty&#x60;,
+&#x60;&lt;Type&gt;.prototype.empty&#x60; or implement the
+[FantasyLand Monoid spec](https://github.com/fantasyland/fantasy-land#monoid).
 
 Dispatches to the &#x60;empty&#x60; method of the first argument, if present."
           >
@@ -523,7 +535,7 @@ In some libraries this function is named &#x60;sequence&#x60;.
             title="Returns the left-to-right Kleisli composition of the provided functions,
 each of which must return a value of a type supported by [&#x60;chain&#x60;](#chain).
 
-&#x60;R.pipeK(f, g, h)&#x60; is equivalent to &#x60;R.pipe(R.chain(f), R.chain(g), R.chain(h))&#x60;."
+&#x60;R.pipeK(f, g, h)&#x60; is equivalent to &#x60;R.pipe(f, R.chain(g), R.chain(h))&#x60;."
           >
             pipeK
           </a>
@@ -552,7 +564,9 @@ must be unary."
           <a
             class="func"
             href="http://ramdajs.com/docs/#tap"
-            title="Runs the given function with the supplied object, then returns the object."
+            title="Runs the given function with the supplied object, then returns the object.
+
+Acts as a transducer if a transformer is given as second parameter."
           >
             tap
           </a>
@@ -842,7 +856,9 @@ Note: &#x60;R.concat&#x60; expects both arguments to be of the same type,
 unlike the native &#x60;Array.prototype.concat&#x60; method. It will throw
 an error if you &#x60;concat&#x60; an Array with a non-Array value.
 
-Dispatches to the &#x60;concat&#x60; method of the first argument, if present."
+Dispatches to the &#x60;concat&#x60; method of the first argument, if present.
+Can also concatenate two members of a [fantasy-land
+compatible semigroup](https://github.com/fantasyland/fantasy-land#semigroup)."
           >
             concat
           </a>
@@ -850,11 +866,11 @@ Dispatches to the &#x60;concat&#x60; method of the first argument, if present."
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#contains"
+            href="http://ramdajs.com/docs/#contains$1"
             title="Returns &#x60;true&#x60; if the specified value is equal, in [&#x60;R.equals&#x60;](#equals)
 terms, to at least one element of the given list; &#x60;false&#x60; otherwise."
           >
-            contains
+            contains$1
           </a>
         </li>
         <li>
@@ -1705,7 +1721,7 @@ function over a [Traversable](https://github.com/fantasyland/fantasy-land#traver
 then uses [&#x60;sequence&#x60;](#sequence) to transform the resulting Traversable of Applicative
 into an Applicative of Traversable.
 
-Dispatches to the &#x60;sequence&#x60; method of the third argument, if present."
+Dispatches to the &#x60;traverse&#x60; method of the third argument, if present."
           >
             traverse
           </a>
@@ -1818,7 +1834,7 @@ Note: &#x60;zip&#x60; is equivalent to &#x60;zipWith(function(a, b) { return [a,
             href="http://ramdajs.com/docs/#zipObj"
             title="Creates a new object out of a list of keys and a list of values.
 Key/value pairing is truncated to the length of the shorter of the two lists.
-Note: &#x60;zipObj&#x60; is equivalent to &#x60;pipe(zipWith(pair), fromPairs)&#x60;."
+Note: &#x60;zipObj&#x60; is equivalent to &#x60;pipe(zip, fromPairs)&#x60;."
           >
             zipObj
           </a>
@@ -1837,208 +1853,274 @@ length of the shorter of the two input lists."
       </ul>
     </section>
     <section>
-      <h2 class="category-title">Logic</h2>
+      <h2 class="category-title">Relation</h2>
       <ul class="category-items">
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#allPass"
-            title="Takes a list of predicates and returns a predicate that returns true for a
-given list of arguments if every one of the provided predicates is satisfied
-by those arguments.
+            href="http://ramdajs.com/docs/#clamp"
+            title="Restricts a number to be within a range.
 
-The function returned is a curried function whose arity matches that of the
-highest-arity predicate."
+Also works for other ordered types such as Strings and Dates."
           >
-            allPass
+            clamp
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#and"
-            title="Returns &#x60;true&#x60; if both arguments are &#x60;true&#x60;; &#x60;false&#x60; otherwise."
-          >
-            and
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#anyPass"
-            title="Takes a list of predicates and returns a predicate that returns true for a
-given list of arguments if at least one of the provided predicates is
-satisfied by those arguments.
+            href="http://ramdajs.com/docs/#countBy"
+            title="Counts the elements of a list according to how many match each value of a
+key generated by the supplied function. Returns an object mapping the keys
+produced by &#x60;fn&#x60; to the number of occurrences in the list. Note that all
+keys are coerced to strings because of how JavaScript objects work.
 
-The function returned is a curried function whose arity matches that of the
-highest-arity predicate."
+Acts as a transducer if a transformer is given in list position."
           >
-            anyPass
+            countBy
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#both"
-            title="A function which calls the two provided functions and returns the &#x60;&amp;&amp;&#x60;
-of the results.
-It returns the result of the first function if it is false-y and the result
-of the second function otherwise. Note that this is short-circuited,
-meaning that the second function will not be invoked if the first returns a
-false-y value.
+            href="http://ramdajs.com/docs/#difference"
+            title="Finds the set (i.e. no duplicates) of all elements in the first list not
+contained in the second list. Objects and Arrays are compared in terms of
+value equality, not reference equality."
+          >
+            difference
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#differenceWith"
+            title="Finds the set (i.e. no duplicates) of all elements in the first list not
+contained in the second list. Duplication is determined according to the
+value returned by applying the supplied predicate to two list elements."
+          >
+            differenceWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#eqBy"
+            title="Takes a function and two values in its domain and returns &#x60;true&#x60; if the
+values map to the same value in the codomain; &#x60;false&#x60; otherwise."
+          >
+            eqBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#equals"
+            title="Returns &#x60;true&#x60; if its arguments are equivalent, &#x60;false&#x60; otherwise. Handles
+cyclical data structures.
 
-In addition to functions, &#x60;R.both&#x60; also accepts any fantasy-land compatible
-applicative functor."
+Dispatches symmetrically to the &#x60;equals&#x60; methods of both arguments, if
+present."
           >
-            both
+            equals
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#complement"
-            title="Takes a function &#x60;f&#x60; and returns a function &#x60;g&#x60; such that if called with the same arguments
-when &#x60;f&#x60; returns a &quot;truthy&quot; value, &#x60;g&#x60; returns &#x60;false&#x60; and when &#x60;f&#x60; returns a &quot;falsy&quot; value &#x60;g&#x60; returns &#x60;true&#x60;.
-
-&#x60;R.complement&#x60; may be applied to any functor"
-          >
-            complement
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#cond"
-            title="Returns a function, &#x60;fn&#x60;, which encapsulates &#x60;if/else, if/else, ...&#x60; logic.
-&#x60;R.cond&#x60; takes a list of [predicate, transformer] pairs. All of the arguments
-to &#x60;fn&#x60; are applied to each of the predicates in turn until one returns a
-&quot;truthy&quot; value, at which point &#x60;fn&#x60; returns the result of applying its
-arguments to the corresponding transformer. If none of the predicates
-matches, &#x60;fn&#x60; returns undefined."
-          >
-            cond
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#defaultTo"
-            title="Returns the second argument if it is not &#x60;null&#x60;, &#x60;undefined&#x60; or &#x60;NaN&#x60;;
-otherwise the first argument is returned."
-          >
-            defaultTo
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#either"
-            title="A function wrapping calls to the two functions in an &#x60;||&#x60; operation,
-returning the result of the first function if it is truth-y and the result
-of the second function otherwise. Note that this is short-circuited,
-meaning that the second function will not be invoked if the first returns a
-truth-y value.
-
-In addition to functions, &#x60;R.either&#x60; also accepts any fantasy-land compatible
-applicative functor."
-          >
-            either
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#ifElse"
-            title="Creates a function that will process either the &#x60;onTrue&#x60; or the &#x60;onFalse&#x60;
-function depending upon the result of the &#x60;condition&#x60; predicate."
-          >
-            ifElse
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#isEmpty"
-            title="Returns &#x60;true&#x60; if the given value is its type&#x27;s empty value; &#x60;false&#x60;
+            href="http://ramdajs.com/docs/#gt"
+            title="Returns &#x60;true&#x60; if the first argument is greater than the second; &#x60;false&#x60;
 otherwise."
           >
-            isEmpty
+            gt
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#not"
-            title="A function that returns the &#x60;!&#x60; of its argument. It will return &#x60;true&#x60; when
-passed false-y value, and &#x60;false&#x60; when passed a truth-y one."
+            href="http://ramdajs.com/docs/#gte"
+            title="Returns &#x60;true&#x60; if the first argument is greater than or equal to the second;
+&#x60;false&#x60; otherwise."
           >
-            not
+            gte
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#or"
-            title="Returns &#x60;true&#x60; if one or both of its arguments are &#x60;true&#x60;. Returns &#x60;false&#x60;
-if both arguments are &#x60;false&#x60;."
+            href="http://ramdajs.com/docs/#identical"
+            title="Returns true if its arguments are identical, false otherwise. Values are
+identical if they reference the same memory. &#x60;NaN&#x60; is identical to &#x60;NaN&#x60;;
+&#x60;0&#x60; and &#x60;-0&#x60; are not identical."
           >
-            or
+            identical
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#pathSatisfies"
-            title="Returns &#x60;true&#x60; if the specified object property at given path satisfies the
-given predicate; &#x60;false&#x60; otherwise."
+            href="http://ramdajs.com/docs/#innerJoin"
+            title="Takes a predicate &#x60;pred&#x60;, a list &#x60;xs&#x60;, and a list &#x60;ys&#x60;, and returns a list
+&#x60;xs&#x27;&#x60; comprising each of the elements of &#x60;xs&#x60; which is equal to one or more
+elements of &#x60;ys&#x60; according to &#x60;pred&#x60;.
+
+&#x60;pred&#x60; must be a binary function expecting an element from each list.
+
+&#x60;xs&#x60;, &#x60;ys&#x60;, and &#x60;xs&#x27;&#x60; are treated as sets, semantically, so ordering should
+not be significant, but since &#x60;xs&#x27;&#x60; is ordered the implementation guarantees
+that its values are in the same order as they appear in &#x60;xs&#x60;. Duplicates are
+not removed, so &#x60;xs&#x27;&#x60; may contain duplicates if &#x60;xs&#x60; contains duplicates."
           >
-            pathSatisfies
+            innerJoin
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#propSatisfies"
-            title="Returns &#x60;true&#x60; if the specified object property satisfies the given
-predicate; &#x60;false&#x60; otherwise."
+            href="http://ramdajs.com/docs/#intersection"
+            title="Combines two lists into a set (i.e. no duplicates) composed of those
+elements common to both lists."
           >
-            propSatisfies
+            intersection
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#unless"
-            title="Tests the final argument by passing it to the given predicate function. If
-the predicate is not satisfied, the function will return the result of
-calling the &#x60;whenFalseFn&#x60; function with the same argument. If the predicate
-is satisfied, the argument is returned as is."
+            href="http://ramdajs.com/docs/#lt"
+            title="Returns &#x60;true&#x60; if the first argument is less than the second; &#x60;false&#x60;
+otherwise."
           >
-            unless
+            lt
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#until"
-            title="Takes a predicate, a transformation function, and an initial value,
-and returns a value of the same type as the initial value.
-It does so by applying the transformation until the predicate is satisfied,
-at which point it returns the satisfactory value."
+            href="http://ramdajs.com/docs/#lte"
+            title="Returns &#x60;true&#x60; if the first argument is less than or equal to the second;
+&#x60;false&#x60; otherwise."
           >
-            until
+            lte
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#when"
-            title="Tests the final argument by passing it to the given predicate function. If
-the predicate is satisfied, the function will return the result of calling
-the &#x60;whenTrueFn&#x60; function with the same argument. If the predicate is not
-satisfied, the argument is returned as is."
+            href="http://ramdajs.com/docs/#max"
+            title="Returns the larger of its two arguments."
           >
-            when
+            max
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#maxBy"
+            title="Takes a function and two values, and returns whichever value produces the
+larger result when passed to the provided function."
+          >
+            maxBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#min"
+            title="Returns the smaller of its two arguments."
+          >
+            min
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#minBy"
+            title="Takes a function and two values, and returns whichever value produces the
+smaller result when passed to the provided function."
+          >
+            minBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#pathEq"
+            title="Determines whether a nested path on an object has a specific value, in
+[&#x60;R.equals&#x60;](#equals) terms. Most likely used to filter a list."
+          >
+            pathEq
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#propEq"
+            title="Returns &#x60;true&#x60; if the specified object property is equal, in
+[&#x60;R.equals&#x60;](#equals) terms, to the given value; &#x60;false&#x60; otherwise.
+You can test multiple properties with [&#x60;R.where&#x60;](#where)."
+          >
+            propEq
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sortBy"
+            title="Sorts the list according to the supplied function."
+          >
+            sortBy
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#sortWith"
+            title="Sorts a list according to a list of comparators."
+          >
+            sortWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#symmetricDifference"
+            title="Finds the set (i.e. no duplicates) of all elements contained in the first or
+second list, but not both."
+          >
+            symmetricDifference
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#symmetricDifferenceWith"
+            title="Finds the set (i.e. no duplicates) of all elements contained in the first or
+second list, but not both. Duplication is determined according to the value
+returned by applying the supplied predicate to two list elements."
+          >
+            symmetricDifferenceWith
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#union"
+            title="Combines two lists into a set (i.e. no duplicates) composed of the elements
+of each list."
+          >
+            union
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#unionWith"
+            title="Combines two lists into a set (i.e. no duplicates) composed of the elements
+of each list. Duplication is determined according to the value returned by
+applying the supplied predicate to two list elements."
+          >
+            unionWith
           </a>
         </li>
       </ul>
@@ -2046,6 +2128,18 @@ satisfied, the argument is returned as is."
     <section>
       <h2 class="category-title">Object</h2>
       <ul class="category-items">
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#_keys"
+            title="Returns a list containing the names of all the enumerable own properties of
+the supplied object.
+Note that the order of the output array is not guaranteed to be consistent
+across different JS platforms."
+          >
+            _keys
+          </a>
+        </li>
         <li>
           <a
             class="func"
@@ -2177,18 +2271,6 @@ values of the given object, which are coerced to strings, as keys. Note
 that the last key found is preferred when handling the same value."
           >
             invertObj
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#keys"
-            title="Returns a list containing the names of all the enumerable own properties of
-the supplied object.
-Note that the order of the output array is not guaranteed to be consistent
-across different JS platforms."
-          >
-            keys
           </a>
         </li>
         <li>
@@ -2562,284 +2644,209 @@ spec.
       </ul>
     </section>
     <section>
-      <h2 class="category-title">Relation</h2>
+      <h2 class="category-title">Logic</h2>
       <ul class="category-items">
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#clamp"
-            title="Restricts a number to be within a range.
+            href="http://ramdajs.com/docs/#allPass"
+            title="Takes a list of predicates and returns a predicate that returns true for a
+given list of arguments if every one of the provided predicates is satisfied
+by those arguments.
 
-Also works for other ordered types such as Strings and Dates."
+The function returned is a curried function whose arity matches that of the
+highest-arity predicate."
           >
-            clamp
+            allPass
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#countBy"
-            title="Counts the elements of a list according to how many match each value of a
-key generated by the supplied function. Returns an object mapping the keys
-produced by &#x60;fn&#x60; to the number of occurrences in the list. Note that all
-keys are coerced to strings because of how JavaScript objects work.
+            href="http://ramdajs.com/docs/#and"
+            title="Returns &#x60;true&#x60; if both arguments are &#x60;true&#x60;; &#x60;false&#x60; otherwise."
+          >
+            and
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#anyPass"
+            title="Takes a list of predicates and returns a predicate that returns true for a
+given list of arguments if at least one of the provided predicates is
+satisfied by those arguments.
 
-Acts as a transducer if a transformer is given in list position."
+The function returned is a curried function whose arity matches that of the
+highest-arity predicate."
           >
-            countBy
+            anyPass
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#difference"
-            title="Finds the set (i.e. no duplicates) of all elements in the first list not
-contained in the second list. Objects and Arrays are compared in terms of
-value equality, not reference equality."
-          >
-            difference
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#differenceWith"
-            title="Finds the set (i.e. no duplicates) of all elements in the first list not
-contained in the second list. Duplication is determined according to the
-value returned by applying the supplied predicate to two list elements."
-          >
-            differenceWith
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#eqBy"
-            title="Takes a function and two values in its domain and returns &#x60;true&#x60; if the
-values map to the same value in the codomain; &#x60;false&#x60; otherwise."
-          >
-            eqBy
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#equals"
-            title="Returns &#x60;true&#x60; if its arguments are equivalent, &#x60;false&#x60; otherwise. Handles
-cyclical data structures.
+            href="http://ramdajs.com/docs/#both"
+            title="A function which calls the two provided functions and returns the &#x60;&amp;&amp;&#x60;
+of the results.
+It returns the result of the first function if it is false-y and the result
+of the second function otherwise. Note that this is short-circuited,
+meaning that the second function will not be invoked if the first returns a
+false-y value.
 
-Dispatches symmetrically to the &#x60;equals&#x60; methods of both arguments, if
-present."
+In addition to functions, &#x60;R.both&#x60; also accepts any fantasy-land compatible
+applicative functor."
           >
-            equals
+            both
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#gt"
-            title="Returns &#x60;true&#x60; if the first argument is greater than the second; &#x60;false&#x60;
+            href="http://ramdajs.com/docs/#complement"
+            title="Takes a function &#x60;f&#x60; and returns a function &#x60;g&#x60; such that if called with the same arguments
+when &#x60;f&#x60; returns a &quot;truthy&quot; value, &#x60;g&#x60; returns &#x60;false&#x60; and when &#x60;f&#x60; returns a &quot;falsy&quot; value &#x60;g&#x60; returns &#x60;true&#x60;.
+
+&#x60;R.complement&#x60; may be applied to any functor"
+          >
+            complement
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#cond"
+            title="Returns a function, &#x60;fn&#x60;, which encapsulates &#x60;if/else, if/else, ...&#x60; logic.
+&#x60;R.cond&#x60; takes a list of [predicate, transformer] pairs. All of the arguments
+to &#x60;fn&#x60; are applied to each of the predicates in turn until one returns a
+&quot;truthy&quot; value, at which point &#x60;fn&#x60; returns the result of applying its
+arguments to the corresponding transformer. If none of the predicates
+matches, &#x60;fn&#x60; returns undefined."
+          >
+            cond
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#defaultTo"
+            title="Returns the second argument if it is not &#x60;null&#x60;, &#x60;undefined&#x60; or &#x60;NaN&#x60;;
+otherwise the first argument is returned."
+          >
+            defaultTo
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#either"
+            title="A function wrapping calls to the two functions in an &#x60;||&#x60; operation,
+returning the result of the first function if it is truth-y and the result
+of the second function otherwise. Note that this is short-circuited,
+meaning that the second function will not be invoked if the first returns a
+truth-y value.
+
+In addition to functions, &#x60;R.either&#x60; also accepts any fantasy-land compatible
+applicative functor."
+          >
+            either
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#ifElse"
+            title="Creates a function that will process either the &#x60;onTrue&#x60; or the &#x60;onFalse&#x60;
+function depending upon the result of the &#x60;condition&#x60; predicate."
+          >
+            ifElse
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
+            href="http://ramdajs.com/docs/#isEmpty"
+            title="Returns &#x60;true&#x60; if the given value is its type&#x27;s empty value; &#x60;false&#x60;
 otherwise."
           >
-            gt
+            isEmpty
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#gte"
-            title="Returns &#x60;true&#x60; if the first argument is greater than or equal to the second;
-&#x60;false&#x60; otherwise."
+            href="http://ramdajs.com/docs/#not"
+            title="A function that returns the &#x60;!&#x60; of its argument. It will return &#x60;true&#x60; when
+passed false-y value, and &#x60;false&#x60; when passed a truth-y one."
           >
-            gte
+            not
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#identical"
-            title="Returns true if its arguments are identical, false otherwise. Values are
-identical if they reference the same memory. &#x60;NaN&#x60; is identical to &#x60;NaN&#x60;;
-&#x60;0&#x60; and &#x60;-0&#x60; are not identical."
+            href="http://ramdajs.com/docs/#or"
+            title="Returns &#x60;true&#x60; if one or both of its arguments are &#x60;true&#x60;. Returns &#x60;false&#x60;
+if both arguments are &#x60;false&#x60;."
           >
-            identical
+            or
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#innerJoin"
-            title="Takes a predicate &#x60;pred&#x60;, a list &#x60;xs&#x60;, and a list &#x60;ys&#x60;, and returns a list
-&#x60;xs&#x27;&#x60; comprising each of the elements of &#x60;xs&#x60; which is equal to one or more
-elements of &#x60;ys&#x60; according to &#x60;pred&#x60;.
-
-&#x60;pred&#x60; must be a binary function expecting an element from each list.
-
-&#x60;xs&#x60;, &#x60;ys&#x60;, and &#x60;xs&#x27;&#x60; are treated as sets, semantically, so ordering should
-not be significant, but since &#x60;xs&#x27;&#x60; is ordered the implementation guarantees
-that its values are in the same order as they appear in &#x60;xs&#x60;. Duplicates are
-not removed, so &#x60;xs&#x27;&#x60; may contain duplicates if &#x60;xs&#x60; contains duplicates."
+            href="http://ramdajs.com/docs/#pathSatisfies"
+            title="Returns &#x60;true&#x60; if the specified object property at given path satisfies the
+given predicate; &#x60;false&#x60; otherwise."
           >
-            innerJoin
+            pathSatisfies
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#intersection"
-            title="Combines two lists into a set (i.e. no duplicates) composed of those
-elements common to both lists."
+            href="http://ramdajs.com/docs/#propSatisfies"
+            title="Returns &#x60;true&#x60; if the specified object property satisfies the given
+predicate; &#x60;false&#x60; otherwise. You can test multiple properties with
+[&#x60;R.where&#x60;](#where)."
           >
-            intersection
+            propSatisfies
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#intersectionWith"
-            title="Combines two lists into a set (i.e. no duplicates) composed of those
-elements common to both lists. Duplication is determined according to the
-value returned by applying the supplied predicate to two list elements."
+            href="http://ramdajs.com/docs/#unless"
+            title="Tests the final argument by passing it to the given predicate function. If
+the predicate is not satisfied, the function will return the result of
+calling the &#x60;whenFalseFn&#x60; function with the same argument. If the predicate
+is satisfied, the argument is returned as is."
           >
-            intersectionWith
+            unless
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#lt"
-            title="Returns &#x60;true&#x60; if the first argument is less than the second; &#x60;false&#x60;
-otherwise."
+            href="http://ramdajs.com/docs/#until"
+            title="Takes a predicate, a transformation function, and an initial value,
+and returns a value of the same type as the initial value.
+It does so by applying the transformation until the predicate is satisfied,
+at which point it returns the satisfactory value."
           >
-            lt
+            until
           </a>
         </li>
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#lte"
-            title="Returns &#x60;true&#x60; if the first argument is less than or equal to the second;
-&#x60;false&#x60; otherwise."
+            href="http://ramdajs.com/docs/#when"
+            title="Tests the final argument by passing it to the given predicate function. If
+the predicate is satisfied, the function will return the result of calling
+the &#x60;whenTrueFn&#x60; function with the same argument. If the predicate is not
+satisfied, the argument is returned as is."
           >
-            lte
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#max"
-            title="Returns the larger of its two arguments."
-          >
-            max
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#maxBy"
-            title="Takes a function and two values, and returns whichever value produces the
-larger result when passed to the provided function."
-          >
-            maxBy
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#min"
-            title="Returns the smaller of its two arguments."
-          >
-            min
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#minBy"
-            title="Takes a function and two values, and returns whichever value produces the
-smaller result when passed to the provided function."
-          >
-            minBy
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#pathEq"
-            title="Determines whether a nested path on an object has a specific value, in
-[&#x60;R.equals&#x60;](#equals) terms. Most likely used to filter a list."
-          >
-            pathEq
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#propEq"
-            title="Returns &#x60;true&#x60; if the specified object property is equal, in
-[&#x60;R.equals&#x60;](#equals) terms, to the given value; &#x60;false&#x60; otherwise."
-          >
-            propEq
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#sortBy"
-            title="Sorts the list according to the supplied function."
-          >
-            sortBy
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#sortWith"
-            title="Sorts a list according to a list of comparators."
-          >
-            sortWith
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#symmetricDifference"
-            title="Finds the set (i.e. no duplicates) of all elements contained in the first or
-second list, but not both."
-          >
-            symmetricDifference
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#symmetricDifferenceWith"
-            title="Finds the set (i.e. no duplicates) of all elements contained in the first or
-second list, but not both. Duplication is determined according to the value
-returned by applying the supplied predicate to two list elements."
-          >
-            symmetricDifferenceWith
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#union"
-            title="Combines two lists into a set (i.e. no duplicates) composed of the elements
-of each list."
-          >
-            union
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#unionWith"
-            title="Combines two lists into a set (i.e. no duplicates) composed of the elements
-of each list. Duplication is determined according to the value returned by
-applying the supplied predicate to two list elements."
-          >
-            unionWith
+            when
           </a>
         </li>
       </ul>
@@ -2896,6 +2903,15 @@ attempt to distinguish user Object types any further, reporting them all as
         <li>
           <a
             class="func"
+            href="http://ramdajs.com/docs/#_trim"
+            title="Removes (strips) whitespace from both ends of the string."
+          >
+            _trim
+          </a>
+        </li>
+        <li>
+          <a
+            class="func"
             href="http://ramdajs.com/docs/#match"
             title="Tests a regular expression against a String. Note that this function will
 return an empty array when there are no matches. This differs from
@@ -2945,7 +2961,7 @@ separator."
         <li>
           <a
             class="func"
-            href="http://ramdajs.com/docs/#toString"
+            href="http://ramdajs.com/docs/#toString$1"
             title="Returns the string representation of the given value. &#x60;eval&#x60;&#x27;ing the output
 should result in a value equivalent to the input value. Many of the built-in
 &#x60;toString&#x60; methods do not satisfy this requirement.
@@ -2966,7 +2982,7 @@ can provide a suitable &#x60;toString&#x60; method. For example:
 
     R.toString(new Point(1, 2)); //&#x3D;&gt; &#x27;new Point(1, 2)&#x27;"
           >
-            toString
+            toString$1
           </a>
         </li>
         <li>
@@ -2976,15 +2992,6 @@ can provide a suitable &#x60;toString&#x60; method. For example:
             title="The upper case version of a string."
           >
             toUpper
-          </a>
-        </li>
-        <li>
-          <a
-            class="func"
-            href="http://ramdajs.com/docs/#trim"
-            title="Removes (strips) whitespace from both ends of the string."
-          >
-            trim
           </a>
         </li>
       </ul>
